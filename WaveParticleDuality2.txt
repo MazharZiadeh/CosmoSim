@@ -1,0 +1,57 @@
+// WaveParticleDuality.cpp
+#include "WaveParticleDuality.h"
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
+
+WaveParticleDuality::WaveParticleDuality() {
+    // Initialize wave properties
+    wave.amplitude = 1.0f;
+    wave.wavelength = 2.0f;
+    wave.frequency = 1.0f;
+
+    // Initialize particles
+    for (int i = 0; i < 100; i++) {
+        Particle p = { rand() % 10 - 5.0f, rand() % 10 - 5.0f, rand() % 10 - 5.0f,
+                      rand() % 2 - 1.0f, rand() % 2 - 1.0f, rand() % 2 - 1.0f };
+        particles.push_back(p);
+    }
+}
+
+void WaveParticleDuality::simulateWave(double timeStep) {
+    // Update wave behavior (simple harmonic motion simulation)
+    float angularFrequency = 2.0f * M_PI * wave.frequency;
+    for (auto& particle : particles) {
+        float distance = std::sqrt(particle.x * particle.x + particle.y * particle.y);
+        particle.z = wave.amplitude * std::sin(angularFrequency * timeStep - distance / wave.wavelength);
+    }
+}
+
+void WaveParticleDuality::simulateParticles(double timeStep) {
+    // Simulate particle motion
+    for (auto& particle : particles) {
+        particle.x += particle.vx * timeStep;
+        particle.y += particle.vy * timeStep;
+        particle.z += particle.vz * timeStep;
+
+        // Boundaries
+        if (particle.x > 5.0f || particle.x < -5.0f) particle.vx = -particle.vx;
+        if (particle.y > 5.0f || particle.y < -5.0f) particle.vy = -particle.vy;
+        if (particle.z > 5.0f || particle.z < -5.0f) particle.vz = -particle.vz;
+    }
+}
+
+void WaveParticleDuality::update(double timeStep) {
+    simulateWave(timeStep);
+    simulateParticles(timeStep);
+}
+
+void WaveParticleDuality::render() {
+    // Render particles
+    glBegin(GL_POINTS);
+    for (const auto& particle : particles) {
+        glVertex3f(particle.x, particle.y, particle.z);
+    }
+    glEnd();
+}

@@ -1,0 +1,34 @@
+#pragma once
+// WaveParticleDuality.h
+#ifndef WAVE_PARTICLE_DUALITY_H
+#define WAVE_PARTICLE_DUALITY_H
+
+#include <vector>
+#include <cmath>
+#include <GL/glut.h>
+
+class WaveParticleDuality {
+public:
+    WaveParticleDuality();
+    void update(double timeStep);
+    void render();
+
+private:
+    struct Particle {
+        float x, y, z;
+        float vx, vy, vz;
+    };
+
+    struct Wave {
+        float amplitude;
+        float wavelength;
+        float frequency;
+    };
+
+    std::vector<Particle> particles;
+    Wave wave;
+    void simulateWave(double timeStep);
+    void simulateParticles(double timeStep);
+};
+
+#endif
