@@ -37,25 +37,6 @@ This project is a **real-time simulation of the Milky Way Galaxy**, visualized u
 - Libraries required:
   - OpenGL (GL)
   - GLUT (GLUT)
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/milky-way-simulation.git
-   cd milky-way-simulation
-   ```
-
-2. Compile the code:
-   ```bash
-   g++ galaxy_simulation.cpp -o galaxy_simulation -lGL -lGLU -lglut -lm
-   ```
-
-3. Run the simulation:
-   ```bash
-   ./galaxy_simulation
-   ```
-
 ---
 
 ## Controls
