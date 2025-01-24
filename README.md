@@ -22,13 +22,6 @@ This project is a **real-time simulation of the Milky Way Galaxy**, visualized u
 
 ---
 
-## Screenshots
-
-![Galaxy Simulation Screenshot](path/to/screenshot.png)  
-*Example of the galaxy simulation with stars of varying colors and brightness.*
-
----
-
 ## Getting Started
 
 ### Prerequisites
